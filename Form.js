@@ -44,7 +44,7 @@ handleChange({target}) {
   if (name === 'age') {
     if (isNaN(val)) {
        target.classList.add('empty');
-       alert('Age must be a number');
+      //  alert('Age must be a number');
        console.log(`${name} should be a number!`);
     return;
     }
@@ -52,17 +52,14 @@ handleChange({target}) {
  let birthDate = target.parentNode.childNodes[4].childNodes[0].childNodes[0].value;
   if (birthDate) {
   this.setState(prev => ({birthday: birthDate}));
-  } 
-  // else {
-  //   alert('Birthday not supplied!');
-  //   return false;
-  // }
+  } else {
+  this.setState(prev => ({birthday: ''}));
+  }
+  
   console.log('input =>', birthDate, val);
   this.setState(prev => ({[name]: val}));
   console.log(this.state);
 }
-
-  
 
   render() {
     return (

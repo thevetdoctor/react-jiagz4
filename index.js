@@ -10,6 +10,7 @@ class App extends Component {
     super();
     this.state = {
       name: 'React Challenge by Enye!',
+      errorMessage: '',
       users: [
         {firstname: 'Oba',
         lastname: 'Ode',
@@ -45,9 +46,11 @@ handleClick(formValues) {
   
 const { firstname, lastname, birthday, age, hobby } = formValues;
 console.log(Object.values(formValues));
+let error = '';
 for (let item in formValues) {
   if (formValues[item] === '') {
-    alert(`${item} not supplied!`);
+    error = `${item} not supplied!`;
+    this.setState({errorMessage : error});
     return false;
   }
 }
@@ -58,6 +61,7 @@ for (let item in formValues) {
         hobby};
   let newState = [...this.state.users, newUser];
   this.setState(prevState => ({users: newState}));
+  this.setState({errorMessage : ''});
   console.log('submitted', newState);
 }
 
@@ -65,8 +69,8 @@ for (let item in formValues) {
     const { name, users } = this.state;
     return (
       <div  className='text-underlined'>
-        <Hello name={name} />
-        <Form val={} onClick={this.handleClick}/>
+        <Hello name={name} /><span className='error'>{this.state.errorMessage}</span>
+        <Form onClick={this.handleClick}/>
         <Users users={users}/>
         <p>
           .... Development in progress...!!!

@@ -10,7 +10,7 @@ h3, p {
 
 body {
   font-family: Lato;
-  background-color: #123;
+  background-color:#099;
   color: #fff;
   font-size: 1em;
   width: 70vw;
@@ -36,11 +36,13 @@ input:nth-child(1) {
 }
 
 input[type="submit"] {
-  color: #123;
+  background-color: #009900;
+  color: #fff;
+  font-weight: bold;
 }
 
-input.empty::placeholder {
-  color: red;
+input.empty::placeholder, .error {
+  color: #ff0055;
 }
 
 .form-selector {
