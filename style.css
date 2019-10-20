@@ -29,8 +29,12 @@ input {
   margin-bottom: 0.7em;
 }
 
-input[type="button"] {
+input[type="submit"] {
   color: #123;
+}
+
+input.empty::placeholder {
+  color: red;
 }
 
 .form-selector {

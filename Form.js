@@ -26,7 +26,8 @@ handleChange({target}) {
   let val = target.value;
   this.setState(prev => ({[name]: ''}));
   console.log(name, val);
-  if (val === '') {
+  if (val === '' || val.trim() === '') {
+    target.classList.add('empty');
     console.log(`${name} is not supplied`);
     return;
   }
