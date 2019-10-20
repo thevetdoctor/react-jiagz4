@@ -1,0 +1,83 @@
+h3, p {
+  font-family: Lato;
+  color: #fff;
+}
+
+.text-underlined h3 {
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+body {
+  font-family: Lato;
+  background-color: #123;
+  color: #fff;
+  font-size: 1em;
+  width: 70vw;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+input {
+  font-size: 1em;
+  color: #123;
+  padding: 0.3em;
+  border-radius: 0.5em;
+  margin-top: 0.4em;
+  margin-bottom: 0.7em;
+}
+
+input[type="button"] {
+  color: #123;
+}
+
+.form-selector {
+  display: flex;
+  justify-content: space-around;
+  width: 56%;
+}
+
+.cal {
+  background-color: #fff;
+  border-radius: 0.5em;
+  width: 90%;
+}
+
+.user-table {
+  border: 1px solid;
+  /* padding: 0.1em; */
+  border-radius: 0.5em;
+  margin-bottom: 4em;
+}
+
+.user-table div {
+  display: flex;
+  /* justify-content: space-evenly; */
+  /* border: 1px solid; */
+  padding: 0.3em;
+  /* border-radius: 0.5em; */
+  /* margin-bottom: 0.3em; */
+}
+
+.user-table span {
+  flex-basis: 20%;
+}
+
+.user-table div:nth-child(1) {
+  background-color: #000;
+  color: #fff;
+  border-radius: 0.5em 0.5em 0 0;
+  padding: 0.6em 0;
+}
+
+.user-table div:nth-child(even) {
+  background-color: #fff;
+  color: #123;
+}
+
+.no-users {
+  text-align: center;
+  padding: 0 30%;
+}
