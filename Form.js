@@ -8,22 +8,28 @@ import 'antd/dist/antd.css';
 class Form extends Component {
   constructor(props) {
     super(props);
-    // function onPanelChange(value, mode) {
-    // console.log(value, mode);
-  // }
-  this.handleChange = this.handleChange.bind(this);
-this.handleSubmit = this.handleSubmit.bind(this);  this.state = {
+  
+   this.state = {
     firstname: '',
     lastname: '',
     birthday: '', 
     age: '',
     hobby: '',
   }
+
+   this.handleChange = this.handleChange.bind(this);
+   this.handleSubmit = this.handleSubmit.bind(this);
 }
 
 handleSubmit (e) {
 e.preventDefault();
-}
+console.log(e.target.childNodes[0].childNodes[4].childNodes[0].value);
+let birthDate = e.target.childNodes[0].childNodes[4].childNodes[0].value;
+  if (birthDate) {
+  this.setState(prev => ({birthday: birthDate}));
+  }
+  console.log(this.state);
+  }
 
 handleChange({target}) {
   let name = target.name;
@@ -37,6 +43,8 @@ handleChange({target}) {
   }
   if (name === 'age') {
     if (isNaN(val)) {
+       target.classList.add('empty');
+       alert('Age must be a number');
        console.log(`${name} should be a number!`);
     return;
     }
@@ -69,12 +77,7 @@ handleChange({target}) {
           <input type='text' name='hobby' placeholder='Hobby' onChange={this.handleChange} /><br />
           <input type='submit' name='submit' value='Submit' onClick={() => this.props.onClick(this.state)} />
           </div>
-            <div>
-            
-            
-          </div>
         </form>
-        
       </div>
     );
   }

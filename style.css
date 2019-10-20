@@ -27,6 +27,12 @@ input {
   border-radius: 0.5em;
   margin-top: 0.4em;
   margin-bottom: 0.7em;
+  width: 11em;
+}
+
+input:nth-child(1) {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 input[type="submit"] {
@@ -40,8 +46,8 @@ input.empty::placeholder {
 .form-selector {
   display: flex;
   justify-content: space-around;
-  width: 76%;
-  margin: 0 26%;
+  width: 86%;
+  margin: 0 auto;
 }
 
 .cal {
@@ -103,6 +109,42 @@ input.empty::placeholder {
 
 .form-selector {
   width: 86%;
-  margin: 0 5em;
+  /* margin: 0 5em; */
+}
+
+input {
+  font-size: 0.7em;
+  color: #123;
+  padding: 0.3em;
+  border-radius: 0.5em;
+  margin-top: 0.4em;
+  margin-bottom: 0.7em;
+  width: 16em;
+  height: 3em;
+}
+
+input:nth-child(1) {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+}
+
+@media screen and (max-width: 350px) {
+  body {
+    width: 90vw;
+  }
+
+.user-table {
+  font-size: 0.6em;
+}
+
+.user-table span {
+  flex-basis: 20%;
+  flex-shrink: 2;
+}
+
+.form-selector {
+  width: 86%;
+  /* margin: 0 2em; */
 }
 }

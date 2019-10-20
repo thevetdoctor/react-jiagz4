@@ -40,43 +40,26 @@ class App extends Component {
    this.handleClick = this.handleClick.bind(this);
 }
 
-handleClick(e) {
-  console.log('input =>', e);
-  // let  newUser = {firstname: 'Toke',
-  //       lastname: 'Ode',
-  //       birthday: '2019-09-16',
-  //       age: 34,
-  //       hobby: 'reading'};
-const { firstname, lastname, birthday, age, hobby } = e;
-if (birthday === '') {
-    alert('Birthday not supplied!');
+handleClick(formValues) {
+  console.log('input =>', formValues);
+  
+const { firstname, lastname, birthday, age, hobby } = formValues;
+console.log(Object.values(formValues));
+for (let item in formValues) {
+  if (formValues[item] === '') {
+    alert(`${item} not supplied!`);
     return false;
   }
+}
   let  newUser = {firstname,
         lastname,
         birthday,
         age,
         hobby};
   let newState = [...this.state.users, newUser];
-  // this.setState(prevState => {
-  //   this.state.users = newState;
-  // console.log('clicked', this.state);
-  // });
   this.setState(prevState => ({users: newState}));
   console.log('submitted', newState);
 }
-
-// componentDidMount() {
-//   this.handleClick();
-// }
-
-// componentDidUpdate(){
-//   (prevState) => (
-//   // if (this.state.users !== prevState.users) {
-//     this.setState({users: this.state.users}))
-//   };
- 
-
 
   render() {
     const { name, users } = this.state;
