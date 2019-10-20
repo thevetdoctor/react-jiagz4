@@ -12,13 +12,17 @@ class Form extends Component {
     // console.log(value, mode);
   // }
   this.handleChange = this.handleChange.bind(this);
-  this.state = {
+this.handleSubmit = this.handleSubmit.bind(this);  this.state = {
     firstname: '',
     lastname: '',
     birthday: '', 
     age: '',
     hobby: '',
   }
+}
+
+handleSubmit (e) {
+e.preventDefault();
 }
 
 handleChange({target}) {
@@ -55,7 +59,7 @@ handleChange({target}) {
   render() {
     return (
       <div>
-        <form className='form-selector'>
+        <form className='form-selector' onSubmit={this.handleSubmit}>
         <div>
           <input type='text' name='firstname' placeholder='Firstname' onChange={this.handleChange}/><br />
           <input type='text' name='lastname' placeholder='Lastname'  onChange={this.handleChange} /><br />

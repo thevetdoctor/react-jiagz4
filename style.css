@@ -40,7 +40,8 @@ input.empty::placeholder {
 .form-selector {
   display: flex;
   justify-content: space-around;
-  width: 56%;
+  width: 76%;
+  margin: 0 26%;
 }
 
 .cal {
@@ -84,4 +85,24 @@ input.empty::placeholder {
 .no-users {
   text-align: center;
   padding: 0 30%;
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    width: 90vw;
+  }
+
+.user-table {
+  font-size: 0.8em;
+}
+
+.user-table span {
+  flex-basis: 20%;
+  flex-shrink: 2;
+}
+
+.form-selector {
+  width: 86%;
+  margin: 0 5em;
+}
 }
