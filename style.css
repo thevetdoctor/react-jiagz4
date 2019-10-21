@@ -41,8 +41,12 @@ input[type="submit"] {
   font-weight: bold;
 }
 
-input.empty::placeholder, .error {
+input.empty::placeholder {
   color: #ff0055;
+}
+
+.error {
+  color: rgb(5, 4, 5);
 }
 
 .form-selector {

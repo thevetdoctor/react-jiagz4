@@ -24,17 +24,17 @@ class App extends Component {
         age: 4,
         hobby: 'reading'},
 
-         {firstname: 'Demi',
-        lastname: 'Ode',
-        birthday: '2019-09-16',
-        age: 4,
-        hobby: 'reading'},
+        //  {firstname: 'Demi',
+        // lastname: 'Ode',
+        // birthday: '2019-09-16',
+        // age: 4,
+        // hobby: 'reading'},
 
-         {firstname: 'Toke',
-        lastname: 'Ode',
-        birthday: '2019-09-16',
-        age: 4,
-        hobby: 'reading'},        
+        //  {firstname: 'Toke',
+        // lastname: 'Ode',
+        // birthday: '2019-09-16',
+        // age: 4,
+        // hobby: 'reading'},        
       ]
     };
 
