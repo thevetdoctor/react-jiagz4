@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "antd": "^3.24.1",
+    "antd": "^3.24.2",
     "font": "^0.0.4",
     "moment": "^2.24.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
