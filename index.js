@@ -56,13 +56,35 @@ handleClick(formValues) {
   console.log('input =>', formValues);
   
 const { firstname, lastname, birthday, age, hobby } = formValues;
+
+let usersInState = this.state.users;
+let userExist = usersInState.filter(user => user['firstname'] === formValues['firstname'] && user.lastname === formValues.lastname);
+
+if (userExist.length) {
+   error = 'User exists already';
+   this.setState({errorMessage : error});
+    
+  return false;
+}
+console.log('user exist', userExist, usersInState);
 console.log(Object.values(formValues));
 let error = '';
 for (let item in formValues) {
-  if (formValues[item] === '') {
-    error = `${item} not supplied!`;
-    this.setState({errorMessage : error});
-    return false;
+    if (formValues[item] === '') {
+      console.log('item', item, formValues[item], 'Age awaiting!');
+      error = `${item} not supplied!`;
+      this.setState({errorMessage : error});
+    
+      return false;
+    }
+
+  if (item === 'age') {
+    if (isNaN(formValues[item])) {
+       console.log('Age must be a number!');
+        error = 'Age must be a number';
+        this.setState({errorMessage : error});
+    return;
+    }
   }
 }
   let  newUser = {firstname,
@@ -84,8 +106,10 @@ for (let item in formValues) {
         {this.state.errorMessage ? <span className='error'>{this.state.errorMessage} </span> : <span></span>}
         <Form onClick={this.handleClick}/>
         <Users users={users} onDelete={this.handleDelete}/>
+        <p style={{color: '#333'}}>
         NB: Click on a user to delete!
-        <p style={{color: 'gray'}}>
+        </p>
+        <p>
           .... Development in progress...!!!
         </p>
       </div>

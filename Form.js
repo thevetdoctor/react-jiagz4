@@ -23,19 +23,24 @@ class Form extends Component {
 
 handleSubmit (e) {
 e.preventDefault();
-console.log(e.target.childNodes[0].childNodes[4].childNodes[0].value);
-let birthDate = e.target.childNodes[0].childNodes[4].childNodes[0].value;
-  if (birthDate) {
-  this.setState(prev => ({birthday: birthDate}));
-  }
-  console.log(this.state);
   }
 
 handleChange({target}) {
   let name = target.name;
   let val = target.value;
+  let keyArray = ['firstname', 'lastname', 'birthday', 'age', 'hobby'];
+  if (name === undefined) {
+  this.setState(prev => ({birthday: ''}));
+  }
+  if (keyArray.indexOf(name) >= 0) {
   this.setState(prev => ({[name]: ''}));
-  console.log(name, val);
+  }
+  console.log('name & value', 'name =>', name, 'value =>', val);
+
+  if (name === 'undefined' || name === undefined) {
+    console.log('name is undefined', 'target =>', target.parentNode, 'val =>', val);
+    return;
+  }
   if (val === '' || val.trim() === '') {
     target.classList.add('empty');
     console.log(`${name} is not supplied`);
@@ -44,26 +49,16 @@ handleChange({target}) {
   if (name === 'age') {
     if (isNaN(val)) {
        target.classList.add('empty');
-      //  alert('Age must be a number');
        console.log(`${name} should be a number!`);
-    return;
+    // return;
     }
   }
-
-  if (name === undefined) {
-    console.log(target, val, val);
-  }
-
- let birthDate = target.parentNode.childNodes[4].childNodes[0].childNodes[0].value;
-  if (birthDate) {
-  this.setState(prev => ({birthday: birthDate}));
-  } else {
-  this.setState(prev => ({birthday: ''}));
-  }
   
-  console.log('input =>', birthDate, val);
+if (name === '') {
+  this.setState(prev => ({birthday: val}));
+  return;
+}
   this.setState(prev => ({[name]: val}));
-  // console.log(this.state);
 }
 
   render() {
@@ -74,7 +69,7 @@ handleChange({target}) {
           <input type='text' name='firstname' placeholder='Firstname' onChange={this.handleChange}/><br />
           <input type='text' name='lastname' placeholder='Lastname'  onChange={this.handleChange} /><br />
 
-          <div onChange={this.handleChange}>
+          <div onFocus={this.handleChange}>
           <DatePicker /><br />
           </div>
         
@@ -88,4 +83,4 @@ handleChange({target}) {
   }
 }
 
-export default Form;
+export default Form; 
