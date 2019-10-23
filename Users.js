@@ -12,7 +12,9 @@ class Users extends Component {
   render() {
     return (
       <div>
-          Users <span>{this.props.users.length}</span>
+            {this.props.users.length ?
+          <span> No of users in record : {this.props.users.length}</span> :
+          <span>No users in record</span>}
           <div className='user-table'>
             <div>
                 <span>No</span>
@@ -22,9 +24,9 @@ class Users extends Component {
                 <span>Age</span>
                 <span>Hobby</span>
           </div>   
-          {this.props.users.length > 4 ?
+          {this.props.users.length ?
           this.props.users.map((item, index) => (
-            <div key={index}>
+            <div key={index} onClick={() => this.props.onDelete(index)}>
                 <span>{index + 1}</span>
                 <span>{item.firstname}</span>
                 <span>{item.lastname}</span>

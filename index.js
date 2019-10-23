@@ -24,21 +24,32 @@ class App extends Component {
         age: 4,
         hobby: 'reading'},
 
-        //  {firstname: 'Demi',
-        // lastname: 'Ode',
-        // birthday: '2019-09-16',
-        // age: 4,
-        // hobby: 'reading'},
+         {firstname: 'Demi',
+        lastname: 'Ode',
+        birthday: '2019-09-16',
+        age: 4,
+        hobby: 'reading'},
 
-        //  {firstname: 'Toke',
-        // lastname: 'Ode',
-        // birthday: '2019-09-16',
-        // age: 4,
-        // hobby: 'reading'},        
+         {firstname: 'Toke',
+        lastname: 'Ode',
+        birthday: '2019-09-16',
+        age: 4,
+        hobby: 'reading'},        
       ]
     };
 
    this.handleClick = this.handleClick.bind(this);
+   this.handleDelete = this.handleDelete.bind(this);
+}
+
+
+handleDelete(id) {
+  console.log('Deleteing user', id + 1);
+  let users = this.state.users;
+  users.splice(id, 1);
+  console.log('Deleted', users); 
+  this.setState(prevState => ({users}));
+
 }
 
 handleClick(formValues) {
@@ -71,7 +82,7 @@ for (let item in formValues) {
       <div  className='text-underlined'>
         <Hello name={name} /><span className='error'>{this.state.errorMessage}</span>
         <Form onClick={this.handleClick}/>
-        <Users users={users}/>
+        <Users users={users} onDelete={this.handleDelete}/>
         <p>
           .... Development in progress...!!!
         </p>
