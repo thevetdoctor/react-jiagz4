@@ -74,16 +74,18 @@ for (let item in formValues) {
   this.setState(prevState => ({users: newState}));
   this.setState({errorMessage : ''});
   console.log('submitted', newState);
-}
+} 
 
   render() {
     const { name, users } = this.state;
     return (
       <div  className='text-underlined'>
-        <Hello name={name} /><span className='error'>{this.state.errorMessage}</span>
+        <Hello name={name} />
+        {this.state.errorMessage ? <span className='error'>{this.state.errorMessage} </span> : <span></span>}
         <Form onClick={this.handleClick}/>
         <Users users={users} onDelete={this.handleDelete}/>
-        <p>
+        NB: Click on a user to delete!
+        <p style={{color: 'gray'}}>
           .... Development in progress...!!!
         </p>
       </div>

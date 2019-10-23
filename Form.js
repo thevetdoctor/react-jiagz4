@@ -49,6 +49,11 @@ handleChange({target}) {
     return;
     }
   }
+
+  if (name === undefined) {
+    console.log(target, val, val);
+  }
+
  let birthDate = target.parentNode.childNodes[4].childNodes[0].childNodes[0].value;
   if (birthDate) {
   this.setState(prev => ({birthday: birthDate}));
@@ -58,7 +63,7 @@ handleChange({target}) {
   
   console.log('input =>', birthDate, val);
   this.setState(prev => ({[name]: val}));
-  console.log(this.state);
+  // console.log(this.state);
 }
 
   render() {
@@ -68,7 +73,10 @@ handleChange({target}) {
         <div>
           <input type='text' name='firstname' placeholder='Firstname' onChange={this.handleChange}/><br />
           <input type='text' name='lastname' placeholder='Lastname'  onChange={this.handleChange} /><br />
+
+          <div onChange={this.handleChange}>
           <DatePicker /><br />
+          </div>
         
           <input type='text' name='age' placeholder='Age' onChange={this.handleChange} /><br />
           <input type='text' name='hobby' placeholder='Hobby' onChange={this.handleChange} /><br />
