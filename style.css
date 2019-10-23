@@ -90,7 +90,7 @@ input.empty::placeholder {
   overflow: auto;
 }
 
-.user-table span:nth-child(1) {
+.user-table span:nth-child(1), .user-table span:nth-last-child(1) {
   flex-basis: 10%;
   flex-shrink: 2;
 }
@@ -156,8 +156,12 @@ input:nth-child(1) {
 @media screen and (max-width: 350px) {
   body {
     width: 90vw;
-    /* font-size: 1.2em; */
+    font-size: 1.2em;
   }
+
+input {
+  font-size: 0.8em;
+}
 
 .user-table {
   font-size: 0.8em;
@@ -171,5 +175,9 @@ input:nth-child(1) {
 .form-selector {
   width: 86%;
   /* margin: 0 2em; */
+}
+
+.date-picker {
+  width: 17em;
 }
 }

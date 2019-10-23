@@ -23,6 +23,18 @@ class Form extends Component {
 
 handleSubmit (e) {
 e.preventDefault();
+// const f = e.target.childNodes[0].childNodes[0];
+// const l = e.target.childNodes[0].childNodes[2];
+// const b = e.target.childNodes[0].childNodes[4].childNodes[0].childNodes[0].childNodes[0];
+// const a = e.target.childNodes[0].childNodes[5];
+// const h = e.target.childNodes[0].childNodes[7];
+
+// let inputArray = [f, l, b, a, h];
+
+// for (let input of inputArray) {
+//   input.value = '';
+// }
+// console.log(f.value, b.value);
   }
 
 handleChange({target}) {
@@ -70,7 +82,7 @@ if (name === '') {
           <input type='text' name='lastname' placeholder='Lastname'  onChange={this.handleChange} /><br />
 
           <div onFocus={this.handleChange}>
-          <DatePicker /><br />
+          <DatePicker className='date-picker' /><br />
           </div>
         
           <input type='text' name='age' placeholder='Age' onChange={this.handleChange} /><br />

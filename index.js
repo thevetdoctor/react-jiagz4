@@ -107,7 +107,7 @@ for (let item in formValues) {
         <Form onClick={this.handleClick}/>
         <Users users={users} onDelete={this.handleDelete}/>
         <p style={{color: '#333'}}>
-        NB: Click on a user to delete!
+        NB: Click (X) to delete a user from the record!
         </p>
         <p>
           .... Development in progress...!!!
