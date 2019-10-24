@@ -5,10 +5,11 @@ const store = createStore(updateUserReducer);
 
 store.dispatch({
   type: 'DELETE_USER',
-  id: 1
+  payload: {id: 1},
 })
 
 console.log(store.getState())
+
 
 export default store;
 

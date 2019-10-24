@@ -29,23 +29,22 @@ const initialState = {
         hobby: 'reading'},
       ]
 };
-
+ 
 const updateUserReducer = (state = initialState, actions) => {
   switch(actions.type) {
   case userActions.addUser.type:
-    console.log(userActions.addUser.type);
-  return {
-    users: state.users,
-  }
+    const newUser = userActions.addUser.payload;
+    let newUserList = state.users;
+    newUserList.push(newUser);
+    let newState = { ...state, users: newUserList};
+  return newState;
 
   case userActions.deleteUser.type:
-  const { id } = userActions.payload;
-  let newUserList = state.users;
-  newUserList.splice(id, 1);
-  let newState = { ...state, newUserList};
-  return {
-    state: newState,
-  }
+    const id = userActions.deleteUser.payload;
+    let newUserList = state.users;
+    newUserList.splice(id, 1);
+    let newState = { ...state, users: newUserList};
+  return newState;
 
   default:
   return state;

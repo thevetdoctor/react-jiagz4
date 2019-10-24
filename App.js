@@ -7,7 +7,7 @@ import Form from './Form';
 import './style.css';
 
 
-const App = (props) => {
+const App = () => {
 
 // const users = useSelector(state => );
 const state = store.getState();
@@ -17,8 +17,12 @@ const handleDelete = (id) => {
   console.log('Deleteing user', id + 1);
   let users = state.users;
   users.splice(id, 1);
-  console.log('Deleted', users); 
-  this.setState(prevState => ({users}));
+  console.log('Deleted', users);
+
+  store.dispatch({
+  type: 'DELETE_USER',
+  payload: id,
+})
 
 }
 
@@ -27,7 +31,7 @@ const handleClick = (formValues) => {
   
 const { firstname, lastname, birthday, age, hobby } = formValues;
 
-let usersInState = this.state.users;
+let usersInState = users;
 let userExist = usersInState.filter(user => user['firstname'] === formValues['firstname'] && user.lastname === formValues.lastname);
 
 if (userExist.length) {
@@ -65,6 +69,11 @@ for (let item in formValues) {
   let newState = [...state.users, newUser];
   // this.setState(prevState => ({users: newState}));
   // this.setState({errorMessage : ''});
+   store.dispatch({
+      type: 'ADD_USER',
+      payload: newUser,
+   })
+
   console.log('submitted', newState);
 } 
 

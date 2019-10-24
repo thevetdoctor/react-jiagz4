@@ -37,16 +37,6 @@ class Users extends Component {
                 <span onClick={() => this.props.onDelete(index)}><b>X</b></span>
                 </div>
           )).reverse()
-          // this.props.users.map((item, index) => (
-          //   <div key={this.props.users.length - index}>
-          //       <span>{this.props.users.length - index}</span>
-          //       <span>{item.firstname}</span>
-          //       <span>{item.lastname}</span>
-          //       <span>{item.birthday}</span>
-          //       <span>{item.age}</span>
-          //       <span>{item.hobby}</span>
-          //       </div>
-          // ))
           :
           <div className='no-users'>No users available</div>
           }
