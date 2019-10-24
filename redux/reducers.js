@@ -30,9 +30,10 @@ const initialState = {
       ]
 };
 
-const updateUserReducer = (state = initialState, userActions) => {
+const updateUserReducer = (state = initialState, actions) => {
   switch(actions.type) {
   case userActions.addUser.type:
+    console.log(userActions.addUser.type);
   return {
     users: state.users,
   }
