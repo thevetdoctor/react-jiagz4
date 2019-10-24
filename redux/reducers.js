@@ -30,17 +30,20 @@ const initialState = {
       ]
 };
 
-const updateUserReducer = (state = initialState, action) => {
-  switch(action.type) {
-  case 'ADD_USER':
+const updateUserReducer = (state = initialState, userActions) => {
+  switch(actions.type) {
+  case userActions.addUser.type:
   return {
     users: state.users,
   }
 
-  case 'DELETE_USER':
-  const 
+  case userActions.deleteUser.type:
+  const { id } = userActions.payload;
+  let newUserList = state.users;
+  newUserList.splice(id, 1);
+  let newState = { ...state, newUserList};
   return {
-    users: '',
+    state: newState,
   }
 
   default:
