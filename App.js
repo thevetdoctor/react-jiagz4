@@ -9,12 +9,13 @@ import './style.css';
 
 const App = (props) => {
 
-// const users = useSelector(state => )
-const users = store.getState();
+// const users = useSelector(state => );
+const state = store.getState();
+const users = state.users;
 
 const handleDelete = (id) => {
   console.log('Deleteing user', id + 1);
-  let users = this.state.users;
+  let users = state.users;
   users.splice(id, 1);
   console.log('Deleted', users); 
   this.setState(prevState => ({users}));
@@ -55,14 +56,14 @@ for (let item in formValues) {
     return;
     }
   }
-}
+} 
   let  newUser = {firstname,
         lastname,
         birthday,
         age,
         hobby};
-  let newState = [...this.state.users, newUser];
-  this.setState(prevState => ({users: newState}));
+  let newState = [...state.users, newUser];
+  // this.setState(prevState => ({users: newState}));
   // this.setState({errorMessage : ''});
   console.log('submitted', newState);
 } 
@@ -71,9 +72,9 @@ for (let item in formValues) {
     return (
       <div  className='text-underlined'>
         <Hello name={name} />
-        // {this.state.errorMessage ? <span className='error'>{this.state.errorMessage} </span> : <span></span>}
-        <Form onClick={this.handleClick}/>
-        <Users users={users} onDelete={this.handleDelete}/>
+        {state.errorMessage ? <span className='error'>{state.errorMessage} </span> : <span></span>}
+        <Form onClick={handleClick}/>
+        <Users users={users} onDelete={handleDelete}/>
         <p style={{color: '#333'}}>
         NB: Click (X) to delete a user from the record!
         </p>

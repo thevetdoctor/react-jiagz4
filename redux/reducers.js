@@ -26,14 +26,21 @@ const initialState = {
         lastname: 'Ode',
         birthday: '2019-09-16',
         age: 4,
-        hobby: 'reading'},       ]
+        hobby: 'reading'},
+      ]
 };
 
-const updateUserReducer = (state = initialState, userActions) => {
-  switch(userActions.type) {
+const updateUserReducer = (state = initialState, action) => {
+  switch(action.type) {
   case 'ADD_USER':
   return {
     users: state.users,
+  }
+
+  case 'DELETE_USER':
+  const 
+  return {
+    users: '',
   }
 
   default:
