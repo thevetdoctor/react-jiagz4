@@ -110,7 +110,7 @@ for (let item in formValues) {
         NB: Click (X) to delete a user from the record!
         </p>
         <p>
-          .... Development in progress...!!!
+          .... Development in progress (React JS & Redux)...!!!
         </p>
       </div>
     );
