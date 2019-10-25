@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { useSelector } from 'react-redux';
 import { Calendar, DatePicker } from 'antd';
+// import Calendar from './Calendar';
 import moment from 'moment';
 import 'antd/dist/antd.css';
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
+const Form = (props) => {
+//   constructor(props) {
+//     super(props);
   
-   this.state = {
-    firstname: '',
-    lastname: '',
-    birthday: '', 
-    age: '',
-    hobby: '',
-  }
+//    this.state = {
+//     firstname: '',
+//     lastname: '',
+//     birthday: '', 
+//     age: '',
+//     hobby: '',
+//   }
+const formState = useSelector(state => state.formState);
+//    this.handleChange = this.handleChange.bind(this);
+//    this.handleSubmit = this.handleSubmit.bind(this);
+// }
 
-   this.handleChange = this.handleChange.bind(this);
-   this.handleSubmit = this.handleSubmit.bind(this);
-}
-
-handleSubmit (e) {
+const handleSubmit = (e) => {
 e.preventDefault();
 // const f = e.target.childNodes[0].childNodes[0];
 // const l = e.target.childNodes[0].childNodes[2];
@@ -36,7 +38,7 @@ e.preventDefault();
 // console.log(f.value, b.value);
   }
 
-handleChange({target}) {
+const handleChange = ({target}) => {
   let name = target.name;
   let val = target.value;
   let keyArray = ['firstname', 'lastname', 'birthday', 'age', 'hobby'];
@@ -72,26 +74,24 @@ if (name === '') {
   this.setState(prev => ({[name]: val}));
 }
 
-  render() {
     return (
       <div>
-        <form className='form-selector' onSubmit={this.handleSubmit}>
+        <form className='form-selector' onSubmit={handleSubmit}>
         <div>
-          <input type='text' name='firstname' placeholder='Firstname' onChange={this.handleChange}/><br />
-          <input type='text' name='lastname' placeholder='Lastname'  onChange={this.handleChange} /><br />
+          <input type='text' name='firstname' placeholder='Firstname' onChange={handleChange}/><br />
+          <input type='text' name='lastname' placeholder='Lastname'  onChange={handleChange} /><br />
 
-          <div onFocus={this.handleChange}>
+          <div onFocus={handleChange}>
           <DatePicker className='date-picker' /><br />
           </div>
         
-          <input type='text' name='age' placeholder='Age' onChange={this.handleChange} /><br />
-          <input type='text' name='hobby' placeholder='Hobby' onChange={this.handleChange} /><br />
-          <input type='submit' name='submit' value='Submit' onClick={() => this.props.onClick(this.state)} />
+          <input type='text' name='age' placeholder='Age' onChange={handleChange} /><br />
+          <input type='text' name='hobby' placeholder='Hobby' onChange={handleChange} /><br />
+          <input type='submit' name='submit' value='Submit' onClick={() => props.onClick(formState)} />
           </div>
         </form>
       </div>
     );
-  }
 }
 
 export default Form; 

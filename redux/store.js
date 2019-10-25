@@ -3,14 +3,6 @@ import updateUserReducer from './reducers';
 
 const store = createStore(updateUserReducer);
 
-store.dispatch({
-  type: 'DELETE_USER',
-  payload: {id: 1},
-})
-
-console.log(store.getState())
-
-
 export default store;
 
 // function todos(state = [], action) {

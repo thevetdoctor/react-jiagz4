@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+// import { connect } from 'react-redux';
 
-class Users extends Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   name: 'React Challenge by Enye!'
-    // };
-  }
+// const mapStateToProps = state => ({ users: state.users });
 
-  render() {
+// const mapDispatchToProps = dispatch
+
+const Users = (props) => {
+// const users = useSelector(state => state.users);
+const { users } = props;
     return (
       <div>
-            {this.props.users.length ?
-          <span> No of users in record : {this.props.users.length}</span> :
+            {users.length ?
+          <span> No of users in record : {users.length}</span> :
           <span>No users in record</span>}
           <div className='user-table'>
             <div>
@@ -25,8 +24,8 @@ class Users extends Component {
                 <span>Hobby</span>
                 <span></span>
           </div>   
-          {this.props.users.length ?
-          this.props.users.map((item, index) => (
+          {users.length ?
+          users.map((item, index) => (
             <div key={index}>
                 <span>{index + 1}</span>
                 <span>{item.firstname}</span>
@@ -34,7 +33,7 @@ class Users extends Component {
                 <span>{item.birthday}</span>
                 <span>{item.age}</span>
                 <span>{item.hobby}</span>
-                <span onClick={() => this.props.onDelete(index)}><b>X</b></span>
+                <span onClick={() => props.onDelete(index)}><b>X</b></span>
                 </div>
           )).reverse()
           :
@@ -43,7 +42,7 @@ class Users extends Component {
           </div>
       </div>
     );
-  }
 }
 
+// const Users = connect(mapStateToProps)(ConnectedUsers);
 export default Users;

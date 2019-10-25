@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import store from './redux/store';
 import Hello from './Hello';
@@ -7,22 +7,24 @@ import Form from './Form';
 import './style.css';
 
 
+
 const App = () => {
 
-// const users = useSelector(state => );
 const state = store.getState();
-const users = state.users;
+// store.subscribe(() => {console.log('current state is : ', state)});
+console.log(state);
+const name = useSelector(state => state.name);
+const errorMessage = useSelector(state => state.errorMessage);
+const users = useSelector(state => state.users);
+// console.log('my users', users);
 
 const handleDelete = (id) => {
-  console.log('Deleteing user', id + 1);
-  let users = state.users;
-  users.splice(id, 1);
-  console.log('Deleted', users);
+  console.log('Deleting user', id + 1);
 
   store.dispatch({
   type: 'DELETE_USER',
-  payload: id,
-})
+  id,
+});
 
 }
 
@@ -31,13 +33,17 @@ const handleClick = (formValues) => {
   
 const { firstname, lastname, birthday, age, hobby } = formValues;
 
-let usersInState = users;
+let usersInState = [ ...users ];
 let userExist = usersInState.filter(user => user['firstname'] === formValues['firstname'] && user.lastname === formValues.lastname);
 
 if (userExist.length) {
    error = 'User exists already';
   //  this.setState({errorMessage : error});
-    
+  
+      store.dispatch({
+        type: 'LOG_ERROR',
+        error,
+      });
   return false;
 }
 console.log('user exist', userExist, usersInState);
@@ -47,6 +53,11 @@ for (let item in formValues) {
     if (formValues[item] === '') {
       console.log('item', item, formValues[item], 'Age awaiting!');
       error = `${item} not supplied!`;
+
+      store.dispatch({
+        type: 'LOG_ERROR',
+        error,
+      });
       // this.setState({errorMessage : error});
     
       return false;
@@ -56,6 +67,11 @@ for (let item in formValues) {
     if (isNaN(formValues[item])) {
        console.log('Age must be a number!');
         error = 'Age must be a number';
+
+        store.dispatch({
+        type: 'LOG_ERROR',
+        error,
+      });
         // this.setState({errorMessage : error});
     return;
     }
@@ -67,21 +83,27 @@ for (let item in formValues) {
         age,
         hobby};
   let newState = [...state.users, newUser];
+
+  error = '';
+  store.dispatch({
+        type: 'LOG_ERROR',
+        error,
+      });
   // this.setState(prevState => ({users: newState}));
   // this.setState({errorMessage : ''});
    store.dispatch({
       type: 'ADD_USER',
-      payload: newUser,
-   })
+      newUser,
+   });
 
-  console.log('submitted', newState);
+  console.log('submitted', 'newUser =>', newUser, 'newState =>', newState);
 } 
 
  
     return (
       <div  className='text-underlined'>
         <Hello name={name} />
-        {state.errorMessage ? <span className='error'>{state.errorMessage} </span> : <span></span>}
+        {errorMessage ? <span className='error'>{errorMessage} </span> : <span></span>}
         <Form onClick={handleClick}/>
         <Users users={users} onDelete={handleDelete}/>
         <p style={{color: '#333'}}>
