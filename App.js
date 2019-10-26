@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import store from './redux/store';
+import { Icon } from 'antd';
 import Hello from './Hello';
 import Users from './Users';
 import Form from './Form2';
@@ -16,7 +17,7 @@ console.log(state);
 const name = useSelector(state => state.name);
 const errorMessage = useSelector(state => state.errorMessage);
 const users = useSelector(state => state.users);
-// console.log('my users', users);
+const formview = useSelector(state => state.formView);
 
 const handleDelete = (id) => {
   console.log('Deleting user', id + 1);
@@ -26,6 +27,15 @@ const handleDelete = (id) => {
   id,
 });
 
+}
+
+const viewForm = (formview) => {
+  console.log('changing form view', 'formview =>');
+
+  store.dispatch({
+    type: 'FORM_VIEW',
+    // formview,
+  });
 }
 
 const handleClick = (formValues) => {
@@ -103,8 +113,29 @@ for (let item in formValues) {
     return (
       <div  className='text-underlined'>
         <Hello name={name} />
+        <div className='links'>
+        <div>
+          <span><a href='https://www.facebook.com/huntiololo' target="_blank"><Icon className='fb logo' type="facebook" /></a></span>
+          <span><a href='https://www.twitter.com/animalworldng' target='_blank'><Icon className='twitter logo' type="twitter" /></a></span>
+          <span><a href='https://www.instagram.com/animalworldng' target='_blank'><Icon className='insta logo' type="instagram" /></a></span>
+        </div>
+        <div>
+        {!formview ?
+          <span className='btn' onClick={viewForm}><Icon type="plus-circle" /></span>
+          :
+          <span className='btn' onClick={viewForm}><Icon type="close-circle" /></span>
+        }
+        </div>
+        </div>
+        {formview ? 
+        <span>
         {errorMessage ? <span className='error'>{errorMessage} </span> : <span></span>}
         <Form onClick={handleClick}/>
+        </span>
+        :
+        <span></span>
+        }
+        <hr />
         <Users users={users} onDelete={handleDelete}/>
         <p style={{color: '#333'}}>
         NB: Click (X) to delete a user from the record!

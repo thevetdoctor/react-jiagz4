@@ -31,6 +31,16 @@ const reducer = (state, action) => {
       // newState.new.push(action.payload);
     return newState;
 
+    case 'CLEAR_FORM':
+    let newState = {
+          firstname: '',
+          lastname: '',
+          birthday: '', 
+          age: '',
+          hobby: '',
+      };
+    return newState;
+
     default:
     return state;
   }

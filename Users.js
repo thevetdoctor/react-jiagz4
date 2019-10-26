@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Icon } from 'antd';
 // import { connect } from 'react-redux';
 
 // const mapStateToProps = state => ({ users: state.users });
-
 // const mapDispatchToProps = dispatch
 
 const Users = (props) => {
@@ -33,7 +33,9 @@ const { users } = props;
                 <span>{item.birthday}</span>
                 <span>{item.age}</span>
                 <span>{item.hobby}</span>
-                <span onClick={() => props.onDelete(index)}><b>X</b></span>
+                <span onClick={() => props.onDelete(index)}>
+                <Icon type="delete" />
+                </span>
                 </div>
           )).reverse()
           :

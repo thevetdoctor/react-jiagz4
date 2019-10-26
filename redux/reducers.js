@@ -2,11 +2,12 @@ import userActions from './actions';
 
 const initialState = {
     name: 'React Challenge by Enye!',
-    errorMessage: '', 
-    users: [
+    errorMessage: '',
+    formView: true,
+    users: [ 
         {firstname: 'Oba',
         lastname: 'Ode', 
-        birthday: '2019-09-16',
+        birthday: '2019-09-16', 
         age: 34, 
         hobby: 'swimming'},
           
@@ -69,6 +70,15 @@ const updateUserReducer = (state = initialState, actions) => {
     // let newState = { ...state, errorMesage: error};
     let newState = Object.assign({}, state, {
       ...state, errorMessage: error,
+    });
+  return newState;
+
+
+    case userActions.formView.type:
+    // const { formview } = actions;
+    console.log('form-view: ', !state.formView);
+    let newState = Object.assign({}, state, {
+      ...state, formView: !state.formView,
     });
   return newState;
 

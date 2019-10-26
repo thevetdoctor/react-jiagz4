@@ -110,6 +110,52 @@ input.empty::placeholder {
 .no-users {
   text-align: center;
   padding: 0 30%;
+  width: 100%;
+  border: 1px solid;
+}
+
+
+.links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.links div {
+  width: 5em;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.links a {
+  color: #fff;
+}
+
+.btn:hover {
+  color: #000;
+}
+
+hr {
+  border: 1px solid #8b8889;
+}
+
+.logo {
+  background-color: #fff;
+  border-radius: 0.2em;
+}
+
+.fb {
+  color: #3b5998;
+}
+
+.twitter {
+  color: #00acee;
+}
+
+.insta {
+  color: red;
 }
 
 @media screen and (max-width: 500px) {
@@ -119,6 +165,10 @@ input.empty::placeholder {
 
 .user-table {
   font-size: 0.8em;
+}
+
+.user-table div {
+  height: 5em;
 }
 
 .user-table span {
@@ -150,6 +200,14 @@ input {
 input:nth-child(1) {
   margin-top: 0.6em;
   margin-bottom: 0.6em;
+}
+
+.links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+  margin-bottom: 1em;
 }
 }
 
