@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import store from './redux/store';
 import Hello from './Hello';
 import Users from './Users';
-import Form from './Form';
+import Form from './Form2';
 import './style.css';
 
 
@@ -51,7 +51,7 @@ console.log(Object.values(formValues));
 let error = '';
 for (let item in formValues) {
     if (formValues[item] === '') {
-      console.log('item', item, formValues[item], 'Age awaiting!');
+      console.log('item', item, formValues[item] ? formValues : 'not supplied');
       error = `${item} not supplied!`;
 
       store.dispatch({

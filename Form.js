@@ -46,7 +46,7 @@ handleChange({target}) {
   if (keyArray.indexOf(name) >= 0) {
   this.setState(prev => ({[name]: ''}));
   }
-  console.log('name & value', 'name =>', name, 'value =>', val);
+  console.log('name =>', name, ': value =>', val);
 
   if (name === 'undefined' || name === undefined) {
     console.log('name is undefined', 'target =>', target.parentNode, 'val =>', val);
