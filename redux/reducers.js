@@ -5,7 +5,7 @@ const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
     errorMessage: '',
     formView: true, 
     users: [ 
-        {firstname: 'Oba',  
+        {firstname: 'Oba', 
         lastname: 'Ode', 
         birthday: '2019-09-16', 
         age: 34, 

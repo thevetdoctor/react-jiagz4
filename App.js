@@ -6,14 +6,13 @@ import Hello from './Hello';
 import Users from './Users';
 import Form from './Form2';
 import './style.css';
-// import populate from './populate';
 
 
 
 const App = () => {
 
 const state = store.getState();
-// store.subscribe((state) => console.log('calling subscribe!'));
+store.subscribe((state) => console.log('calling subscribe!'));
 
 const name = useSelector(state => state.name);
 const errorMessage = useSelector(state => state.errorMessage);
@@ -110,17 +109,6 @@ for (let item in formValues) {
   console.log('submitted', 'newUser =>', newUser, 'newState =>', newState);
 } 
 
-// const dispatch = useDispatch();
-
-const populate = () => {
-
-console.log(JSON.parse(localStorage.getItem('usersDB')).apiData);
-// store.dispatch({
-//   type: 'ADD_USER',
-//   // user
-// });
-}
-populate();
  
     return (
       <div  className='text-underlined'>
