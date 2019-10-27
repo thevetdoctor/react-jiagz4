@@ -4,13 +4,13 @@ const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
     name: 'React Challenge by Enye!',
     errorMessage: '',
     formView: true, 
-    users: [ 
-        {firstname: 'Oba', 
-        lastname: 'Ode', 
+    users: [
+        {firstname: 'Oba',
+        lastname: 'Ode',
         birthday: '2019-09-16', 
         age: 34, 
         hobby: 'swimming'},
-          
+           
         {firstname: 'Dami', 
         lastname: 'Ode',
         birthday: '2019-09-16',
@@ -78,13 +78,13 @@ const updateUserReducer = (state = initialState, actions) => {
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
   return newState;
-
+ 
 
   case userActions.dataSuccess.type:
     console.log('Getting DATA from API');
     let { data } = actions;
     let newState = Object.assign({}, state, {
-      ...state, apiData: data
+      ...state, apiData: [...data]
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
     console.log('API response', JSON.parse(localStorage.getItem('usersDB')).apiData);

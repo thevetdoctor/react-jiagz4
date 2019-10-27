@@ -109,27 +109,20 @@ for (let item in formValues) {
   console.log('submitted', 'newUser =>', newUser, 'newState =>', newState);
 } 
 
-const populate = async(user) => {
-  
-    const savedUser = await store.dispatch({
-      type: 'ADD_USER',
-      user
-    });
-    return savedUser;
-}
-
-if (JSON.parse(localStorage.getItem('usersDB')).apiData) {
-let newUsers = JSON.parse(localStorage.getItem('usersDB').apiData);
-  for (let x of newUsers) {
-for (let i = 0; i < 6; i++) {
-      // populate(x);
-      console.log(x);;
+const populate = () => {
+let newUser = JSON.parse(localStorage.getItem('usersDB'));
+    console.log(newUser);
+    let count = 0;
+    if (newUser.apiData) {
+      // setInterval(
+        store.dispatch({
+          type: 'ADD_USER',
+          newUser: newUser.apiData[0]
+    })
+    // , 8000);
     }
 }
-  
-}
 
- 
     return (
       <div  className='text-underlined'>
         <Hello name={name} />
@@ -140,9 +133,12 @@ for (let i = 0; i < 6; i++) {
           <span><a href='https://www.instagram.com/animalworldng' target='_blank'><Icon className='insta logo' type="instagram" /></a></span>
         </div>
         <div>
-
-          <span className='btn' onClick={handleSaga}><Icon type="plus-circle" /></span>
-
+      {!JSON.parse(localStorage.getItem('usersDB')).apiData ?
+        <span className='btn' onClick={handleSaga}><Icon type="cloud-download" /></span>
+        :
+       <span className='btn' onClick={populate}><Icon type="login" /></span>
+      }
+        
         {!formview ?
           <span className='btn' onClick={viewForm}><Icon type="plus-circle" /></span>
           :
