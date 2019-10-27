@@ -12,22 +12,14 @@ import './style.css';
 const App = () => {
 
 const state = store.getState();
-// store.subscribe(() => {console.log('current state is : ', state)});
-// store.subscribe((state) => (
-// // if (initialState) {
-//   localStorage.setItem('usersDB', JSON.stringify(state));
-//  console.log('local storage', JSON.parse(localStorage.getItem('usersDB')));
-// // }
-// ));
-// console.log('gg', state);
-// console.log('local storage', JSON.parse(localStorage.getItem('usersDB')))
+store.subscribe((state) => console.log('calling subscribe!'));
+
 const name = useSelector(state => state.name);
 const errorMessage = useSelector(state => state.errorMessage);
 const users = useSelector(state => state.users);
 const formview = useSelector(state => state.formView);
 
 const handleDelete = (id) => {
-  // console.log('Deleting user', id + 1);
 
   store.dispatch({
   type: 'DELETE_USER',
@@ -37,11 +29,9 @@ const handleDelete = (id) => {
 }
 
 const viewForm = (formview) => {
-  // console.log('changing form view', 'formview =>');
 
   store.dispatch({
     type: 'FORM_VIEW',
-    // formview,
   });
 }
 
@@ -55,7 +45,6 @@ let userExist = usersInState.filter(user => user['firstname'] === formValues['fi
 
 if (userExist.length) {
    error = 'User exists already';
-  //  this.setState({errorMessage : error});
   
       store.dispatch({
         type: 'LOG_ERROR',
@@ -75,8 +64,7 @@ for (let item in formValues) {
         type: 'LOG_ERROR',
         error,
       });
-      // this.setState({errorMessage : error});
-    
+     
       return false;
     }
 
@@ -89,7 +77,6 @@ for (let item in formValues) {
         type: 'LOG_ERROR',
         error,
       });
-        // this.setState({errorMessage : error});
     return;
     }
   }
@@ -106,8 +93,7 @@ for (let item in formValues) {
         type: 'LOG_ERROR',
         error,
       });
-  // this.setState(prevState => ({users: newState}));
-  // this.setState({errorMessage : ''});
+
    store.dispatch({
       type: 'ADD_USER',
       newUser,
