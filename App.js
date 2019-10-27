@@ -136,7 +136,7 @@ for (let item in formValues) {
 
 const populate = () => {
 let newUser = JSON.parse(localStorage.getItem('usersDB'));
-    console.log(newUser.apiData.length);
+    // console.log(newUser.apiData.length);
     let count = Math.floor(Math.random() * 5);
     if (newUser.apiData) {
     store.dispatch({

@@ -15,7 +15,7 @@ const { users } = props;
           <span> No of users in record : {users.length}</span> :
           <span><b>No users in record</b></span>}</span>
           <div className='user-table'>
-                {screen.width === 288 ?
+                {screen.width < 288 ?
             <div style={{fontWeight: 'bold'}}>
                 <span>No</span>
                 <span>Firstname</span>

@@ -3,10 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "antd": "^3.24.2",
-    "firebase-admin": "^8.0.0",
-    "firebase-functions": "^3.3.0",
-    "firebase-tools": "^7.6.1",
+    "antd": "^3.24.3",
     "font": "^0.0.4",
     "moment": "^2.24.0",
     "react": "^16.11.0",
