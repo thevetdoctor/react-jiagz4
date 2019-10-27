@@ -6,13 +6,14 @@ import Hello from './Hello';
 import Users from './Users';
 import Form from './Form2';
 import './style.css';
+// import populate from './populate';
 
 
 
 const App = () => {
 
 const state = store.getState();
-store.subscribe((state) => console.log('calling subscribe!'));
+// store.subscribe((state) => console.log('calling subscribe!'));
 
 const name = useSelector(state => state.name);
 const errorMessage = useSelector(state => state.errorMessage);
@@ -26,6 +27,13 @@ const handleDelete = (id) => {
   id,
 });
 
+}
+
+const handleSaga = () => {
+  
+  store.dispatch({
+  type: 'GET_DATA',
+});
 }
 
 const viewForm = (formview) => {
@@ -102,6 +110,17 @@ for (let item in formValues) {
   console.log('submitted', 'newUser =>', newUser, 'newState =>', newState);
 } 
 
+// const dispatch = useDispatch();
+
+const populate = () => {
+
+console.log(JSON.parse(localStorage.getItem('usersDB')).apiData);
+// store.dispatch({
+//   type: 'ADD_USER',
+//   // user
+// });
+}
+populate();
  
     return (
       <div  className='text-underlined'>
@@ -113,6 +132,9 @@ for (let item in formValues) {
           <span><a href='https://www.instagram.com/animalworldng' target='_blank'><Icon className='insta logo' type="instagram" /></a></span>
         </div>
         <div>
+
+          <span className='btn' onClick={handleSaga}><Icon type="plus-circle" /></span>
+
         {!formview ?
           <span className='btn' onClick={viewForm}><Icon type="plus-circle" /></span>
           :

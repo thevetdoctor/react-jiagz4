@@ -3,6 +3,9 @@ const userActions = {
   deleteUser: { type: 'DELETE_USER'},
   logError: { type: 'LOG_ERROR'},
   formView: { type: 'FORM_VIEW'},
+  getData: { type: 'GET_DATA'},
+  dataSuccess: { type: 'DATA_SUCCESS'},
+  dataFailure: { type: 'DATA_FAILURE'}
 }
 
 export default userActions;

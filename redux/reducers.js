@@ -3,11 +3,11 @@ import userActions from './actions';
 const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
     name: 'React Challenge by Enye!',
     errorMessage: '',
-    formView: true,
+    formView: true, 
     users: [ 
         {firstname: 'Oba',  
         lastname: 'Ode', 
-        birthday: '2019-09-16',
+        birthday: '2019-09-16', 
         age: 34, 
         hobby: 'swimming'},
           
@@ -15,7 +15,7 @@ const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
         lastname: 'Ode',
         birthday: '2019-09-16',
         age: 4, 
-        hobby: 'reading'}, 
+        hobby: 'reading'},
         
         {firstname: 'Demi', 
         lastname: 'Ode', 
@@ -71,13 +71,35 @@ const updateUserReducer = (state = initialState, actions) => {
   return newState;
 
 
-    case userActions.formView.type:
+  case userActions.formView.type:
     console.log(`switching ${!state.formView ? 'ON' : 'OFF'} the form`);
     let newState = Object.assign({}, state, {
       ...state, formView: !state.formView, errorMessage: ''
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
   return newState;
+
+
+  case userActions.dataSuccess.type:
+    console.log('Getting DATA from API');
+    let { data } = actions;
+    let newState = Object.assign({}, state, {
+      ...state, apiData: data
+    });
+    localStorage.setItem('usersDB', JSON.stringify(newState));
+    console.log('API response', JSON.parse(localStorage.getItem('usersDB')).apiData);
+  return newState;
+
+
+  case userActions.dataFailure.type:
+    let { error } = actions;
+    console.log('Error response from API', error);
+    let newState = Object.assign({}, state, {
+      ...state, apiError: error
+    });
+    localStorage.setItem('usersDB', JSON.stringify(newState));
+  return newState;
+
 
   default:
     localStorage.setItem('usersDB', JSON.stringify(state));

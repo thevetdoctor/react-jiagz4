@@ -1,26 +1,19 @@
-import { createStore } from 'redux';
-import { devToolsEnhancer } from 'redux-devtools-extension';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools, devToolsEnhancer } from 'redux-devtools-extension';
 import updateUserReducer from './reducers';
+import createSagaMiddleware from 'redux-saga';
+import reduxSaga from './redux-saga';
 
-const store = createStore(updateUserReducer, devToolsEnhancer());
+
+const reduxSagaMiddleware = createSagaMiddleware();
+const store = createStore(updateUserReducer, composeWithDevTools(
+  applyMiddleware(reduxSagaMiddleware),
+));
+
+// const store = createStore(updateUserReducer, devToolsEnhancer(), applyMiddleware(sagaMiddleware));
+
+reduxSagaMiddleware.run(reduxSaga);
+
+
 
 export default store;
-
-// function todos(state = [], action) {
-//   switch (action.type) {
-//     case 'ADD_TODO':
-//       return state.concat([action.text])
-//     default:
-//       return state
-//   }
-// }
-
-// const store = createStore(todos, ['Use Redux'])
-
-// store.dispatch({
-//   type: 'ADD_TODO',
-//   text: 'Read the docs'
-// })
-
-// console.log(store.getState())
-// // [ 'Use Redux', 'Read the docs' ]
