@@ -3,7 +3,7 @@ import userActions from './actions';
 const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
     name: 'React Challenge by Enye!',
     errorMessage: '', 
-    formView: true,
+    formView: true, 
     loading: false,  
     users: [
         {firstname: 'Oba',  

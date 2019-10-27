@@ -135,13 +135,13 @@ for (let item in formValues) {
 } 
 
 const populate = () => {
-let newUser = JSON.parse(localStorage.getItem('usersDB'));
+// let newUser = JSON.parse(localStorage.getItem('usersDB'));
     // console.log(newUser.apiData.length);
     let count = Math.floor(Math.random() * 5);
-    if (newUser.apiData) {
+    if (apiData) {
     store.dispatch({
       type: 'ADD_USER',
-      newUser: newUser.apiData[count] || {firstname: 'Toke',
+      newUser: apiData[count] || {firstname: 'Toke',
         lastname: 'Ode',
         birthday: '2019-09-16', 
         age: 4, 
@@ -168,10 +168,12 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
              {loading ?
                   <span className='btn'><Icon type="loading" /></span>
               :
-                <span>{!apiData.length ?
-                  <span className='btn' onClick={handleLoading}><Icon type="cloud-download"/></span>
+                <span>{apiData && apiData.length ?
+                <span className='btn' onClick={populate}><Icon type="login"/></span>
                    :
-                  <span className='btn' onClick={populate}><Icon type="login"/></span>
+                  <span className='btn' onClick={handleLoading}><Icon type="cloud-download"/></span>
+
+                  
                 }</span>
             }
         </div>
