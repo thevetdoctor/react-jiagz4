@@ -18,6 +18,7 @@ body {
   color: #fff;
   font-size: 1em;
   /* font-weight: bold; */
+  box-sizing: border-box;
   width: 70vw;
   height: 100vh;
   margin: 0 auto;
