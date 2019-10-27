@@ -9,7 +9,7 @@ function* getAPIData(type = 'GET_DATA') {
       // const data = yield call(apiData(), {});
       const data = yield apiData();
 
-      console.log(data);
+      // console.log(data);
 
       yield put({type: 'DATA_SUCCESS', data });
    } catch (e) {

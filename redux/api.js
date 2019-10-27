@@ -4,7 +4,7 @@ export const apiData = async() => {
   
 // ('https://jsonplaceholder.typicode.com/users');
   const json = await res.json();
-  console.log('json response', json);
+  // console.log('json response', json);
   return json;
   } catch(e) {
   console.log('error response', e);

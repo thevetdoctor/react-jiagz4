@@ -12,7 +12,7 @@ import './style.css';
 const App = () => {
 
 const state = store.getState();
-store.subscribe((state) => console.log('calling subscribe!'));
+// store.subscribe((state) => console.log('calling subscribe!'));
 
 const name = useSelector(state => state.name);
 const errorMessage = useSelector(state => state.errorMessage);

@@ -5,6 +5,7 @@ import { Calendar, DatePicker } from 'antd';
 // import Calendar from './Calendar';
 import moment from 'moment';
 import 'antd/dist/antd.css';
+import uuidv5 from 'uuid/v5';
 
 
 const Form = ({ onClick }) => {
@@ -18,6 +19,12 @@ const Form = ({ onClick }) => {
     // new: [],
   }
 
+// const myId = 'abcgefgh-1234-1234-1234-123456789jkl';
+const myString = '1b671a64-40d5-491e-99b0-da01ff1f3341';
+
+const g = uuidv5('fanbase', myString);
+const h = uuidv5('fan', myString);
+console.log(g, h);
 
 const reducer = (state, action) => {
   switch(action.type) {
