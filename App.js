@@ -109,6 +109,26 @@ for (let item in formValues) {
   console.log('submitted', 'newUser =>', newUser, 'newState =>', newState);
 } 
 
+const populate = async(user) => {
+  
+    const savedUser = await store.dispatch({
+      type: 'ADD_USER',
+      user
+    });
+    return savedUser;
+}
+
+if (JSON.parse(localStorage.getItem('usersDB')).apiData) {
+let newUsers = JSON.parse(localStorage.getItem('usersDB').apiData);
+  for (let x of newUsers) {
+for (let i = 0; i < 6; i++) {
+      // populate(x);
+      console.log(x);;
+    }
+}
+  
+}
+
  
     return (
       <div  className='text-underlined'>
