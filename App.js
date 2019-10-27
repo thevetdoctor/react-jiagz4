@@ -18,6 +18,7 @@ const name = useSelector(state => state.name);
 const errorMessage = useSelector(state => state.errorMessage);
 const users = useSelector(state => state.users);
 const formview = useSelector(state => state.formView);
+const loading = useSelector(state => state.loading);
 
 const handleDelete = (id) => {
 
@@ -29,11 +30,25 @@ const handleDelete = (id) => {
 }
 
 const handleSaga = () => {
-  
+
   store.dispatch({
   type: 'GET_DATA',
 });
+// handleLoading();
+setTimeout(() => handleLoading(), 2000);
+
 }
+ 
+
+const handleLoading = () => {
+
+  store.dispatch({
+  type: 'LOADING',
+}); 
+setTimeout(() => handleSaga(), 2000);
+// handleSaga();
+}
+
 
 const viewForm = (formview) => {
 
@@ -131,10 +146,17 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
             <span><a href='https://www.instagram.com/animalworldng' target='_blank'><Icon className='insta logo' type="instagram" /></a></span>
           </div>
         <div>
-            {!JSON.parse(localStorage.getItem('usersDB')).apiData ?
-              <span className='btn' onClick={handleSaga}><Icon type="cloud-download" /></span>
+             {!loading ?
+              <span className='btn' onClick={handleLoading}>
+              <Icon type="cloud-download" loading={loading}/></span>
               :
-            <span className='btn' onClick={populate}><Icon type="login" /></span>
+                <span>{loading ?
+                  <span className='btn'>
+                  <Icon type="loading" loading={loading} /></span>
+                  :
+                <span className='btn' onClick={populate}>
+                <Icon type="login" loading={loading} /></span>
+                }</span>
             }
         
             {!formview ?

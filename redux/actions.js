@@ -4,6 +4,7 @@ const userActions = {
   logError: { type: 'LOG_ERROR'},
   formView: { type: 'FORM_VIEW'},
   getData: { type: 'GET_DATA'},
+  loading: { type: 'LOADING'},
   dataSuccess: { type: 'DATA_SUCCESS'},
   dataFailure: { type: 'DATA_FAILURE'}
 }

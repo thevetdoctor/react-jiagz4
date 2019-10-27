@@ -29,3 +29,17 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
     });
     }
 }
+
+
+ {!JSON.parse(localStorage.getItem('usersDB')).apiData ?
+              <span className='btn' onClick={handleLoading}>
+              <Icon type="cloud-download" /></span>
+              :
+                <span>{loading ?
+                  <span className='btn'>
+                  <Icon type="loading" loading={loading} /></span>
+                  :
+                <span className='btn' onClick={populate}>
+                <Icon type="login" loading={!loading} /></span>
+                }</span>
+            }

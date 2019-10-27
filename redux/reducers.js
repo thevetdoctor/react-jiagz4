@@ -2,17 +2,18 @@ import userActions from './actions';
 
 const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
     name: 'React Challenge by Enye!',
-    errorMessage: '',
-    formView: true, 
+    errorMessage: '', 
+    formView: true,
+    loading: null,
     users: [
         {firstname: 'Oba',
         lastname: 'Ode', 
-        birthday: '2019-09-16', 
+        birthday: '2019-09-16',  
         age: 34, 
         hobby: 'swimming'},
            
         {firstname: 'Dami', 
-        lastname: 'Ode',
+        lastname: 'Ode', 
         birthday: '2019-09-16',
         age: 4, 
         hobby: 'reading'},
@@ -45,7 +46,7 @@ const updateUserReducer = (state = initialState, actions) => {
     console.log('new user added', newUser);
     localStorage.setItem('usersDB', JSON.stringify(newState));
 
-  return newState;
+  return newState; 
 
   case userActions.deleteUser.type:
     const { id }= actions;
@@ -61,20 +62,29 @@ const updateUserReducer = (state = initialState, actions) => {
   return newState;
 
    case userActions.logError.type:
-    const { error } = actions;
+    const { error } = actions; 
     console.log('error-message: ', error);
     let newState = Object.assign({}, state, {
       ...state, errorMessage: error,
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
-
+  
   return newState;
-
+ 
 
   case userActions.formView.type:
     console.log(`switching ${!state.formView ? 'ON' : 'OFF'} the form`);
     let newState = Object.assign({}, state, {
       ...state, formView: !state.formView, errorMessage: ''
+    });
+    localStorage.setItem('usersDB', JSON.stringify(newState));
+  return newState;
+
+
+  case userActions.loading.type:
+    console.log(`${!state.loading ? '' : 'NOT'} loading`);
+    let newState = Object.assign({}, state, {
+      ...state, loading: !state.loading
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
   return newState;
@@ -84,7 +94,7 @@ const updateUserReducer = (state = initialState, actions) => {
     console.log('Getting DATA from API');
     let { data } = actions;
     let newState = Object.assign({}, state, {
-      ...state, apiData: [...data]
+      ...state, apiData: [...data], loading: false
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
     console.log('API response', JSON.parse(localStorage.getItem('usersDB')).apiData);
