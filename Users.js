@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import { Icon } from 'antd';
 // import { connect } from 'react-redux';
@@ -11,11 +11,12 @@ const Users = (props) => {
 const { users } = props;
     return (
       <div>
-          {users.length ?
+          <span style={{fontWeight: 'bold'}}>{users.length ?
           <span> No of users in record : {users.length}</span> :
-          <span>No users in record</span>}
+          <span><b>No users in record</b></span>}</span>
           <div className='user-table'>
-            <div>
+                {screen.width === 288 ?
+            <div style={{fontWeight: 'bold'}}>
                 <span>No</span>
                 <span>Firstname</span>
                 <span>Lastname</span>
@@ -25,7 +26,19 @@ const { users } = props;
                 <span onClick={() => props.onClearTable()}>
                 <Icon type="delete" style={{backgroundColor: 'red', borderRadius: '10px', padding: '3px'}} />
                 </span>
-          </div>   
+            </div>  :
+            <div style={{fontWeight: 'bold'}}>
+                <span>No</span>
+                <span>Fname</span>
+                <span>Lname</span>
+                <span>Bday</span>
+                <span>Age</span>
+                <span>Hobby</span>
+                <span onClick={() => props.onClearTable()}>
+                <Icon type="delete" style={{backgroundColor: 'red', borderRadius: '10px', padding: '3px'}} />
+                </span>
+            </div> 
+                } 
           {users.length ?
           users.map((item, index) => (
             <div key={index}>

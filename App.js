@@ -141,7 +141,11 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
     if (newUser.apiData) {
     store.dispatch({
       type: 'ADD_USER',
-      newUser: newUser.apiData[count]
+      newUser: newUser.apiData[count] || {firstname: 'Toke',
+        lastname: 'Ode',
+        birthday: '2019-09-16', 
+        age: 4, 
+        hobby: 'reading'}
     });
     }
 }
@@ -156,23 +160,19 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
             <span><a href='https://www.instagram.com/animalworldng' target='_blank'><Icon className='insta logo' type="instagram" /></a></span>
           </div>
         <div>
-             {!apiData ?
-              <span className='btn' onClick={handleLoading}>
-              <Icon type="cloud-download"/></span>
-              :
-                <span>{loading ?
-                  <span className='btn'>
-                  <Icon type="loading" /></span>
-                  :
-                <span className='btn' onClick={populate}>
-                <Icon type="login"/></span>
-                }</span>
-            }
-        
             {!formview ?
               <span className='btn' onClick={viewForm}><Icon type="plus-circle" /></span>
               :
               <span className='btn' onClick={viewForm}><Icon type="close-circle" /></span>
+            }
+             {loading ?
+                  <span className='btn'><Icon type="loading" /></span>
+              :
+                <span>{!apiData.length ?
+                  <span className='btn' onClick={handleLoading}><Icon type="cloud-download"/></span>
+                   :
+                  <span className='btn' onClick={populate}><Icon type="login"/></span>
+                }</span>
             }
         </div>
         </div>
@@ -186,7 +186,7 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
         }
         <hr />
         <Users users={users} onClearTable={clearTable} onDelete={handleDelete}/>
-        <p style={{color: '#333'}}>
+        <p style={{color: '#333', marginTop: '2em'}}>
         NB: Click <span style={{color: '#fff'}}><Icon type='delete'/></span> to delete a user from the record!
         </p>
         <p>

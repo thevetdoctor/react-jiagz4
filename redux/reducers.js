@@ -6,11 +6,11 @@ const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
     formView: true,
     loading: false,  
     users: [
-        {firstname: 'Oba',
+        {firstname: 'Oba', 
         lastname: 'Ode',
         birthday: '2019-09-16',  
         age: 34, 
-        hobby: 'swimming'}, 
+        hobby: 'swimming'},
            
         {firstname: 'Dami', 
         lastname: 'Ode', 
@@ -92,7 +92,7 @@ const updateUserReducer = (state = initialState, actions) => {
     localStorage.setItem('usersDB', JSON.stringify(newState));
   
   return newState;
- 
+  
 
   case userActions.formView.type:
     console.log(`switching ${!state.formView ? 'ON' : 'OFF'} the form`);
@@ -110,7 +110,7 @@ const updateUserReducer = (state = initialState, actions) => {
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
   return newState;
- 
+  
 
   case userActions.dataSuccess.type:
     console.log('Getting DATA from API');
@@ -121,11 +121,11 @@ const updateUserReducer = (state = initialState, actions) => {
       data = data.map(x => ({
         firstname: x.name,
         lastname: x.username,
-        birthday: '1980',
+        birthday: '1980-01-01',
         age: 25,
         hobby: 'travelling'
       }));
-    }
+    } 
     console.log(data);
 
     let newState = Object.assign({}, state, {
