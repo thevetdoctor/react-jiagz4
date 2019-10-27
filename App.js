@@ -111,15 +111,13 @@ for (let item in formValues) {
 
 const populate = () => {
 let newUser = JSON.parse(localStorage.getItem('usersDB'));
-    console.log(newUser);
-    let count = 0;
+    console.log(newUser.apiData.length);
+    let count = Math.floor(Math.random() * 5);
     if (newUser.apiData) {
-      // setInterval(
-        store.dispatch({
-          type: 'ADD_USER',
-          newUser: newUser.apiData[0]
-    })
-    // , 8000);
+    store.dispatch({
+      type: 'ADD_USER',
+      newUser: newUser.apiData[count]
+    });
     }
 }
 
@@ -127,23 +125,23 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
       <div  className='text-underlined'>
         <Hello name={name} />
         <div className='links'>
+          <div>
+            <span><a href='https://www.facebook.com/huntiololo' target="_blank"><Icon className='fb logo' type="facebook" /></a></span>
+            <span><a href='https://www.twitter.com/animalworldng' target='_blank'><Icon className='twitter logo' type="twitter" /></a></span>
+            <span><a href='https://www.instagram.com/animalworldng' target='_blank'><Icon className='insta logo' type="instagram" /></a></span>
+          </div>
         <div>
-          <span><a href='https://www.facebook.com/huntiololo' target="_blank"><Icon className='fb logo' type="facebook" /></a></span>
-          <span><a href='https://www.twitter.com/animalworldng' target='_blank'><Icon className='twitter logo' type="twitter" /></a></span>
-          <span><a href='https://www.instagram.com/animalworldng' target='_blank'><Icon className='insta logo' type="instagram" /></a></span>
-        </div>
-        <div>
-      {!JSON.parse(localStorage.getItem('usersDB')).apiData ?
-        <span className='btn' onClick={handleSaga}><Icon type="cloud-download" /></span>
-        :
-       <span className='btn' onClick={populate}><Icon type="login" /></span>
-      }
+            {!JSON.parse(localStorage.getItem('usersDB')).apiData ?
+              <span className='btn' onClick={handleSaga}><Icon type="cloud-download" /></span>
+              :
+            <span className='btn' onClick={populate}><Icon type="login" /></span>
+            }
         
-        {!formview ?
-          <span className='btn' onClick={viewForm}><Icon type="plus-circle" /></span>
-          :
-          <span className='btn' onClick={viewForm}><Icon type="close-circle" /></span>
-        }
+            {!formview ?
+              <span className='btn' onClick={viewForm}><Icon type="plus-circle" /></span>
+              :
+              <span className='btn' onClick={viewForm}><Icon type="close-circle" /></span>
+            }
         </div>
         </div>
         {formview ? 
@@ -162,6 +160,7 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
         <p>
           .... Development in progress ...!!!
         </p>
+        
       </div>
     );
   }

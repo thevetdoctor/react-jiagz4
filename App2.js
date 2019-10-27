@@ -15,5 +15,17 @@ for (let i = 0; i < 6; i++) {
       console.log(x);;
     }
 }
-  
+}
+
+
+const populate = () => {
+let newUser = JSON.parse(localStorage.getItem('usersDB'));
+    console.log(newUser.apiData.length);
+    let count = Math.floor(Math.random() * 5);
+    if (newUser.apiData) {
+    store.dispatch({
+      type: 'ADD_USER',
+      newUser: newUser.apiData[count]
+    });
+    }
 }
