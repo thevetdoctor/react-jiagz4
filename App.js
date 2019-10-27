@@ -64,7 +64,7 @@ for (let item in formValues) {
         type: 'LOG_ERROR',
         error,
       });
-     
+    
       return false;
     }
 
