@@ -18,6 +18,7 @@ const name = useSelector(state => state.name);
 const errorMessage = useSelector(state => state.errorMessage);
 const users = useSelector(state => state.users);
 const formview = useSelector(state => state.formView);
+const apiData = useSelector(state => state.apiData);
 const loading = useSelector(state => state.loading);
 
 const handleDelete = (id) => {
@@ -29,13 +30,22 @@ const handleDelete = (id) => {
 
 }
 
+
+const clearTable = () => {
+
+  store.dispatch({
+  type: 'DELETE_USERS',
+});
+
+}
+
 const handleSaga = () => {
 
   store.dispatch({
   type: 'GET_DATA',
 });
 // handleLoading();
-setTimeout(() => handleLoading(), 2000);
+// setTimeout(() => handleLoading(), 2000);
 
 }
  
@@ -45,7 +55,7 @@ const handleLoading = () => {
   store.dispatch({
   type: 'LOADING',
 }); 
-setTimeout(() => handleSaga(), 2000);
+setTimeout(() => handleSaga(), 4000);
 // handleSaga();
 }
 
@@ -99,7 +109,7 @@ for (let item in formValues) {
         type: 'LOG_ERROR',
         error,
       });
-    return;
+    return; 
     }
   }
 } 
@@ -146,16 +156,16 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
             <span><a href='https://www.instagram.com/animalworldng' target='_blank'><Icon className='insta logo' type="instagram" /></a></span>
           </div>
         <div>
-             {!loading ?
+             {!apiData ?
               <span className='btn' onClick={handleLoading}>
-              <Icon type="cloud-download" loading={loading}/></span>
+              <Icon type="cloud-download"/></span>
               :
                 <span>{loading ?
                   <span className='btn'>
-                  <Icon type="loading" loading={loading} /></span>
+                  <Icon type="loading" /></span>
                   :
                 <span className='btn' onClick={populate}>
-                <Icon type="login" loading={loading} /></span>
+                <Icon type="login"/></span>
                 }</span>
             }
         
@@ -175,7 +185,7 @@ let newUser = JSON.parse(localStorage.getItem('usersDB'));
         <span></span>
         }
         <hr />
-        <Users users={users} onDelete={handleDelete}/>
+        <Users users={users} onClearTable={clearTable} onDelete={handleDelete}/>
         <p style={{color: '#333'}}>
         NB: Click <span style={{color: '#fff'}}><Icon type='delete'/></span> to delete a user from the record!
         </p>

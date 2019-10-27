@@ -4,17 +4,17 @@ const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
     name: 'React Challenge by Enye!',
     errorMessage: '', 
     formView: true,
-    loading: null,
+    loading: false,  
     users: [
         {firstname: 'Oba',
-        lastname: 'Ode', 
+        lastname: 'Ode',
         birthday: '2019-09-16',  
         age: 34, 
-        hobby: 'swimming'},
+        hobby: 'swimming'}, 
            
         {firstname: 'Dami', 
         lastname: 'Ode', 
-        birthday: '2019-09-16',
+        birthday: '2019-09-16', 
         age: 4, 
         hobby: 'reading'},
         
@@ -61,7 +61,29 @@ const updateUserReducer = (state = initialState, actions) => {
 
   return newState;
 
-   case userActions.logError.type:
+
+ case userActions.deleteUsers.type:
+ let newState;
+    if (state.users.length) {
+    console.log('Deleting all users', state.users);
+    let newUserList = [ ...state.users ];
+    newUserList.splice(0, state.users.length);
+    newState = Object.assign({}, state, {
+      ...state, users: newUserList,
+      });
+    } else {
+      console.log('Deleting all users from API');
+    newState = Object.assign({}, state, {
+      ...state, apiData: [],
+      });
+    }
+    console.log('newState: ', newState);
+    localStorage.setItem('usersDB', JSON.stringify(newState));
+
+  return newState;
+
+
+  case userActions.logError.type:
     const { error } = actions; 
     console.log('error-message: ', error);
     let newState = Object.assign({}, state, {
@@ -93,19 +115,32 @@ const updateUserReducer = (state = initialState, actions) => {
   case userActions.dataSuccess.type:
     console.log('Getting DATA from API');
     let { data } = actions;
+
+    console.log(data);
+    if (Object.keys(data[0]).indexOf('username') >= 0) {
+      data = data.map(x => ({
+        firstname: x.name,
+        lastname: x.username,
+        birthday: '1980',
+        age: 25,
+        hobby: 'travelling'
+      }));
+    }
+    console.log(data);
+
     let newState = Object.assign({}, state, {
       ...state, apiData: [...data], loading: false
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
     console.log('API response', JSON.parse(localStorage.getItem('usersDB')).apiData);
-  return newState;
+  return newState; 
 
 
   case userActions.dataFailure.type:
     let { error } = actions;
     console.log('Error response from API', error);
     let newState = Object.assign({}, state, {
-      ...state, apiError: error
+      ...state, apiError: 'error'
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
   return newState;

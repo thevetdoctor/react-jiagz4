@@ -22,7 +22,9 @@ const { users } = props;
                 <span>Birthday</span>
                 <span>Age</span>
                 <span>Hobby</span>
-                <span></span>
+                <span onClick={() => props.onClearTable()}>
+                <Icon type="delete" style={{backgroundColor: 'red', borderRadius: '10px', padding: '3px'}} />
+                </span>
           </div>   
           {users.length ?
           users.map((item, index) => (

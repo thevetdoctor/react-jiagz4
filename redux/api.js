@@ -1,8 +1,10 @@
 export const apiData = async() => {
   try {
-  const res = await fetch('https://my.api.mockaroo.com/enye_users.json?key=1f7ca420', { headers: { 'Content-Type': 'application/json' }});
-  
-// ('https://jsonplaceholder.typicode.com/users');
+  const res = JSON.parse(localStorage.getItem('usersDB')).apiError === 'error' ?
+  await fetch('https://my.api.mockaroo.com/enye_users.json?key=1f7ca420', { headers: { 'Content-Type': 'application/json' }})
+  :
+  await fetch('https://jsonplaceholder.typicode.com/users', { headers: { 'Content-Type': 'application/json' }});
+
   const json = await res.json();
   // console.log('json response', json);
   return json;
