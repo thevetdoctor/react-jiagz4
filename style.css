@@ -109,9 +109,7 @@ input.empty::placeholder {
 
 .no-users {
   text-align: center;
-  padding: 0 30%;
-  width: 100%;
-  border: 1px solid;
+  padding: 0 20%;
 }
 
 
@@ -143,19 +141,23 @@ hr {
 
 .logo {
   background-color: #fff;
-  border-radius: 0.2em;
 }
 
 .fb {
-  color: #3b5998;
+  background-color: #3b5998;
+  border-radius: 0.2em;
+  /* padding: 0.1em; */
 }
 
 .twitter {
-  color: #00acee;
+  background-color: #00acee;
+  border-radius: 0.2em;
 }
 
 .insta {
-  color: red;
+  background-color: rgb(240, 12, 12);
+  /* color: #3f729b; */
+  border-radius: 0.2em;
 }
 
 @media screen and (max-width: 500px) {
@@ -168,7 +170,7 @@ hr {
 }
 
 .user-table div {
-  height: 5em;
+  height: 4em;
 }
 
 .user-table span {

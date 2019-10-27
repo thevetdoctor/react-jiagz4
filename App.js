@@ -13,14 +13,21 @@ const App = () => {
 
 const state = store.getState();
 // store.subscribe(() => {console.log('current state is : ', state)});
-console.log(state);
+// store.subscribe((state) => (
+// // if (initialState) {
+//   localStorage.setItem('usersDB', JSON.stringify(state));
+//  console.log('local storage', JSON.parse(localStorage.getItem('usersDB')));
+// // }
+// ));
+// console.log('gg', state);
+// console.log('local storage', JSON.parse(localStorage.getItem('usersDB')))
 const name = useSelector(state => state.name);
 const errorMessage = useSelector(state => state.errorMessage);
 const users = useSelector(state => state.users);
 const formview = useSelector(state => state.formView);
 
 const handleDelete = (id) => {
-  console.log('Deleting user', id + 1);
+  // console.log('Deleting user', id + 1);
 
   store.dispatch({
   type: 'DELETE_USER',
@@ -30,7 +37,7 @@ const handleDelete = (id) => {
 }
 
 const viewForm = (formview) => {
-  console.log('changing form view', 'formview =>');
+  // console.log('changing form view', 'formview =>');
 
   store.dispatch({
     type: 'FORM_VIEW',
@@ -138,10 +145,10 @@ for (let item in formValues) {
         <hr />
         <Users users={users} onDelete={handleDelete}/>
         <p style={{color: '#333'}}>
-        NB: Click (X) to delete a user from the record!
+        NB: Click <span style={{color: '#fff'}}><Icon type='delete'/></span> to delete a user from the record!
         </p>
         <p>
-          .... Development in progress (React JS & Redux)...!!!
+          .... Development in progress ...!!!
         </p>
       </div>
     );
