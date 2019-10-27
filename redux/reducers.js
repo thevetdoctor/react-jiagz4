@@ -5,7 +5,7 @@ const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
     errorMessage: '',
     formView: true,
     users: [ 
-        {firstname: 'Oba',  
+        {firstname: 'Oba',
         lastname: 'Ode', 
         birthday: '2019-09-16', 
         age: 34, 
@@ -26,7 +26,7 @@ const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
         {firstname: 'Toke',
         lastname: 'Ode',
         birthday: '2019-09-16', 
-        age: 4, 
+        age: 4,
         hobby: 'reading'},
       ]
 }; 
@@ -35,7 +35,7 @@ const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
 
 
 const updateUserReducer = (state = initialState, actions) => {
-  localStorage.setItem('usersDB', JSON.stringify(state));
+  // localStorage.setItem('usersDB', JSON.stringify(state));
 
   switch(actions.type) {
   case userActions.addUser.type:
@@ -46,49 +46,43 @@ const updateUserReducer = (state = initialState, actions) => {
       ...state, users: newUserList,
       });
     console.log('new user added', newUser);
+    localStorage.setItem('usersDB', JSON.stringify(newState));
+
   return newState;
 
   case userActions.deleteUser.type:
-    // const id = userActions.deleteUser.id;
     const { id }= actions;
-    // console.log('id', id);
     console.log('Deleting user', id + 1);
-    // let clonedState = Object.assign({}, state, {
-    //   ...state,
-    // });
-    // let newUserList = clonedState.users;
-    // let newUserList = [{
-    //   firstname: 'Adebisi',
-    // }];
     let newUserList = [ ...state.users ];
     newUserList.splice(id, 1);
     let newState = Object.assign({}, state, {
       ...state, users: newUserList,
       });
     console.log('newState: ', newState);
+    localStorage.setItem('usersDB', JSON.stringify(newState));
 
   return newState;
 
    case userActions.logError.type:
     const { error } = actions;
     console.log('error-message: ', error);
-    let newError = state.errorMesage;
-    // let newState = { ...state, errorMesage: error};
     let newState = Object.assign({}, state, {
       ...state, errorMessage: error,
     });
+    localStorage.setItem('usersDB', JSON.stringify(newState));
+
   return newState;
 
 
     case userActions.formView.type:
-    // const { formview } = actions;
     console.log(`switching ${!state.formView ? 'ON' : 'OFF'} the form`);
     let newState = Object.assign({}, state, {
-      ...state, formView: !state.formView,
+      ...state, formView: !state.formView, errorMessage : ''
     });
   return newState;
 
   default:
+    localStorage.setItem('usersDB', JSON.stringify(state));
   return state;
   }
 };
