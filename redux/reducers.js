@@ -16,7 +16,7 @@ const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
         lastname: 'Ode', 
         birthday: '2019-09-16', 
         age: 4, 
-        hobby: 'reading'},
+        hobby: 'reading'}, 
         
         {firstname: 'Demi', 
         lastname: 'Ode', 
@@ -140,7 +140,12 @@ const updateUserReducer = (state = initialState, actions) => {
     let { error } = actions;
     console.log('Error response from API', error);
     let newState = Object.assign({}, state, {
-      ...state, apiError: 'error'
+      ...state, loading: false, apiData: [{
+        firstname: 'Demi', 
+        lastname: 'Ode', 
+        birthday: '2019-09-16',
+        age: 4, 
+        hobby: 'reading'}]
     });
     localStorage.setItem('usersDB', JSON.stringify(newState));
   return newState;

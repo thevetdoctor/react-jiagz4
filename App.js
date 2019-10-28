@@ -19,6 +19,7 @@ const errorMessage = useSelector(state => state.errorMessage);
 const users = useSelector(state => state.users);
 const formview = useSelector(state => state.formView);
 const apiData = useSelector(state => state.apiData);
+const apiError = useSelector(state => state.error);
 const loading = useSelector(state => state.loading);
 
 const handleDelete = (id) => {
@@ -168,10 +169,10 @@ const populate = () => {
              {loading ?
                   <span className='btn'><Icon type="loading" /></span>
               :
-                <span>{apiData && apiData.length ?
-                <span className='btn' onClick={populate}><Icon type="login"/></span>
+                <span>{(apiData && apiData.length) ?
+                <span className='btn' onClick={() => populate()}><Icon type="login"/></span>
                    :
-                  <span className='btn' onClick={handleLoading}><Icon type="cloud-download"/></span>
+                  <span className='btn' onClick={() => handleLoading()}><Icon type="cloud-download"/></span>
 
                   
                 }</span>
