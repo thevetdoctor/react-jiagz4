@@ -1,14 +1,14 @@
 import { put, fork, take } from "redux-saga/effects";
 import { eventChannel } from "redux-saga";
-import firebase from "@Common/Firebase";
-import { ActionCreators } from "./Actions";
+import firebase from "@Common/firebase";
+// import { ActionCreators } from "./Actions";
 
 function* startListener() {
   // #1: Creates an eventChannel and starts the listener;
   const channel = new eventChannel(emiter => {
     const listener = firebase
       .database()
-      .ref("todos")
+      .ref("users")
       .on("value", snapshot => {
         emiter({ data: snapshot.val() || {} });
       });
@@ -23,7 +23,7 @@ function* startListener() {
   while (true) {
     const { data } = yield take(channel);
     // #4: Pause the task until the channel emits a signal and dispatch an action in the store;
-    yield put(ActionCreators.updateList(data));
+    yield put({type: 'DATA_SUCCESS', data });
   }
 }
 
