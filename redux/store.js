@@ -15,5 +15,4 @@ const store = createStore(updateUserReducer, composeWithDevTools(
 reduxSagaMiddleware.run(reduxSaga);
 
 
-
 export default store;
