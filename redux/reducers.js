@@ -1,4 +1,5 @@
 import userActions from './actions';
+import { apiData } from './api';
 
 const initialState = JSON.parse(localStorage.getItem('usersDB')) || {
     name: 'React Challenge by Enye!',
@@ -37,13 +38,23 @@ const updateUserReducer = (state = initialState, actions) => {
 
   switch(actions.type) {
   case userActions.addUser.type:
-    const { newUser } = actions;
+    const data = apiData(newUser);
+    // const { newUser } = actions;
+
+    // const { user } = actions;
+    const DBUser = {
+      firstname: data.f,
+      lastname: data.l,
+      birthday: data.b,
+      age: data.a,
+      hobby: data.h,
+    }
     let newUserList = [ ...state.users ];
-    newUserList.push(newUser);
+    newUserList.push(DBUser);
     let newState = Object.assign({}, state, {
       ...state, users: newUserList,
       });
-    console.log('new user added', newUser);
+    console.log('new user added', DBUser);
     localStorage.setItem('usersDB', JSON.stringify(newState));
 
   return newState; 
