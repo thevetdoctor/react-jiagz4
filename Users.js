@@ -42,7 +42,7 @@ const { users } = props;
           {users.length ?
           users.map((item, index) => (
             <div key={index}>
-                <span>{index + 1}</span>
+                <span>{item.userId}</span>
                 <span>{item.firstname}</span>
                 <span>{item.lastname}</span>
                 <span>{item.birthday}</span>

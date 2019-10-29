@@ -128,9 +128,7 @@ for (let item in formValues) {
       });
 
    store.dispatch({
-      // type: 'ADD_USER',
-      type: 'GET_DATA',
-
+      type: 'ADD_USER',
       newUser,
    });
 
@@ -138,6 +136,8 @@ for (let item in formValues) {
 } 
 
 const populate = () => {
+  console.log('populate is disabled for now');
+  return;
 // let newUser = JSON.parse(localStorage.getItem('usersDB'));
     // console.log(newUser.apiData.length);
     let count = Math.floor(Math.random() * 5);

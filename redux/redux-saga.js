@@ -21,7 +21,7 @@ function* getAPIData(type = 'GET_DATA', newUser) {
 
 function* reduxSaga() {
 
-  yield takeLatest("GET_DATA", getAPIData(type = 'GET_DATA', newUser));
+  yield takeLatest("GET_DATA", getAPIData);
 }
 
 export default reduxSaga;

@@ -1,7 +1,7 @@
 import { put, fork, take } from "redux-saga/effects";
 import { eventChannel } from "redux-saga";
 import firebase from "../firebase";
-// import { ActionCreators } from "./Actions";
+
 
 function* startListener() {
   // #1: Creates an eventChannel and starts the listener;
