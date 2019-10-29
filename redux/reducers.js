@@ -38,24 +38,27 @@ const updateUserReducer = (state = initialState, actions) => {
 
   switch(actions.type) {
   case userActions.addUser.type:
-    const data = apiData(actions.newUser);
-    // const { newUser } = actions;
-    console.log('data', data);
+    // const data = apiData(actions.newUser);
+    const { newUser } = actions;
+    // console.log('data', data);
 
     // const { user } = actions;
-    const DBUser = {
-      firstname: data.f,
-      lastname: data.l,
-      birthday: data.b,
-      age: data.a,
-      hobby: data.h,
-    }
+    let DBUser = 'DB';
+    // const DBUser = {
+    //   firstname: data.f,
+    //   lastname: data.l,
+    //   birthday: data.b,
+    //   age: data.a,
+    //   hobby: data.h,
+    // }
     let newUserList = [ ...state.users ];
-    newUserList.push(DBUser);
+    // newUserList.push(DBUser);
+    newUserList.push(newUser);
+
     let newState = Object.assign({}, state, {
       ...state, users: newUserList,
       });
-    console.log('new user added', DBUser);
+    console.log('new user added', DBUser, newUser);
     localStorage.setItem('usersDB', JSON.stringify(newState));
 
   return newState; 

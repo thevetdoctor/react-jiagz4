@@ -6,8 +6,8 @@ import { apiData } from './api';
 function* getAPIData(type = 'GET_DATA') {
 
    try {
-      // const data = yield call(apiData(), {});
-      const data = yield apiData();
+      const data = yield call(apiData(), {});
+      // const data = yield apiData();
 
       // console.log(data);
 
