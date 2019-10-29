@@ -2,8 +2,8 @@ export const apiData = async (user) => {
   
   try {
     const res = await fetch(`https://us-central1-quickstart-1559031126554.cloudfunctions.net/createNewUser?f=${user.firstname}&l=${user.lastname}&b=${user.birthday}&a=${user.age}&h=${user.hobby}`, { method: 'GET',
-      cors: "no-cors",
-      headers: { "Content-Type": "application/json" }
+      cors: 'no-cors',
+      headers: { 'Content-Type': 'application/json' }
     });
 
     // ("https://jsonplaceholder.typicode.com/users", {

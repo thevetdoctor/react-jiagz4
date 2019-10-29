@@ -38,7 +38,7 @@ const updateUserReducer = (state = initialState, actions) => {
 
   switch(actions.type) {
   case userActions.addUser.type:
-    const data = apiData(newUser);
+    const data = apiData(actions.newUser);
     // const { newUser } = actions;
 
     // const { user } = actions;
