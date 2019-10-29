@@ -3,10 +3,10 @@ import { apiData } from './api';
 
 
 
-function* getAPIData(type = 'GET_DATA') {
+function* getAPIData(type = 'GET_DATA', newUser) {
 
    try {
-      const data = yield call(apiData(), {});
+      const data = yield call(apiData, newUser);
       // const data = yield apiData();
 
       // console.log(data);
@@ -21,7 +21,7 @@ function* getAPIData(type = 'GET_DATA') {
 
 function* reduxSaga() {
 
-  yield takeLatest("GET_DATA", getAPIData);
+  yield takeLatest("GET_DATA", getAPIData(type = 'GET_DATA', newUser));
 }
 
 export default reduxSaga;

@@ -128,7 +128,9 @@ for (let item in formValues) {
       });
 
    store.dispatch({
-      type: 'ADD_USER',
+      // type: 'ADD_USER',
+      type: 'GET_DATA',
+
       newUser,
    });
 
