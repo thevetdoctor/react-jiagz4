@@ -22,6 +22,7 @@ function* startListener() {
   // #3: Creates a loops to keep the execution in memory;
   while (true) {
     const { data } = yield take(channel);
+    console.log('event channel is working')
     // #4: Pause the task until the channel emits a signal and dispatch an action in the store;
     yield put({type: 'DATA_SUCCESS', data });
   }
