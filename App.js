@@ -81,7 +81,7 @@ if (userExist.length) {
   
       store.dispatch({
         type: 'LOG_ERROR',
-        error,
+        logError: error,
       });
   return false;
 }

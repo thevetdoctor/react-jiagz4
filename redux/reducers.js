@@ -40,76 +40,76 @@ const updateUserReducer = (state = initialState, actions) => {
     const { newUser } = actions;
     let newUserList = [ ...state.users ];
     newUserList.push(newUser);
-    let newState = Object.assign({}, state, {
+    let newUserState = Object.assign({}, state, {
       ...state, users: newUserList,
       });
     console.log('new user added', newUser);
-    localStorage.setItem('usersDB', JSON.stringify(newState));
+    localStorage.setItem('usersDB', JSON.stringify(newUserState));
 
-  return newState; 
+  return newUserState; 
 
   case userActions.deleteUser.type:
     const { id }= actions;
     console.log('Deleting user', id + 1);
-    let newUserList = [ ...state.users ];
-    newUserList.splice(id, 1);
-    let newState = Object.assign({}, state, {
-      ...state, users: newUserList,
+    let deleteUserList = [ ...state.users ];
+    deleteUserList.splice(id, 1);
+    let deleteUserState = Object.assign({}, state, {
+      ...state, users: deleteUserList,
       });
     console.log('newState: ', newState);
-    localStorage.setItem('usersDB', JSON.stringify(newState));
+    localStorage.setItem('usersDB', JSON.stringify(deleteUserState));
 
-  return newState;
+  return deleteUserState;
 
 
  case userActions.deleteUsers.type:
- let newState;
+ let deleteUsersState;
     if (state.users.length) {
     console.log('Deleting all users', state.users);
-    let newUserList = [ ...state.users ];
-    newUserList.splice(0, state.users.length);
-    newState = Object.assign({}, state, {
-      ...state, users: newUserList,
+    let deleteUsersList = [ ...state.users ];
+    deleteUsersList.splice(0, state.users.length);
+    deleteUsersState = Object.assign({}, state, {
+      ...state, users: deleteUsersList,
       });
     } else {
       console.log('Deleting all users from API');
-    newState = Object.assign({}, state, {
+    deleteUsersState = Object.assign({}, state, {
       ...state, apiData: [],
       });
     }
     console.log('newState: ', newState);
-    localStorage.setItem('usersDB', JSON.stringify(newState));
+    localStorage.setItem('usersDB', JSON.stringify(deleteUsersState));
 
-  return newState;
+  return deleteUsersState;
 
 
   case userActions.logError.type:
-    const { error } = actions; 
+    const { logError } = actions; 
     console.log('error-message: ', error);
-    let newState = Object.assign({}, state, {
-      ...state, errorMessage: error,
+    let errorState = Object.assign({}, state, {
+      ...state, errorMessage: logError,
     });
-    localStorage.setItem('usersDB', JSON.stringify(newState));
+    localStorage.setItem('usersDB', JSON.stringify(errorState));
   
-  return newState;
+  return errorState;
   
 
   case userActions.formView.type:
     console.log(`switching ${!state.formView ? 'ON' : 'OFF'} the form`);
-    let newState = Object.assign({}, state, {
+    let formViewState = Object.assign({}, state, {
       ...state, formView: !state.formView, errorMessage: ''
     });
-    localStorage.setItem('usersDB', JSON.stringify(newState));
-  return newState;
+    localStorage.setItem('usersDB', JSON.stringify(formViewState));
+  return formViewState;
 
 
   case userActions.loading.type:
     console.log(`${!state.loading ? '' : 'NOT'} loading`);
-    let newState = Object.assign({}, state, {
+    let loadingState = Object.assign({}, state, {
       ...state, loading: !state.loading
     });
-    localStorage.setItem('usersDB', JSON.stringify(newState));
-  return newState;
+    localStorage.setItem('usersDB', JSON.stringify(loadingState));
+  return loadingState;
   
 
   case userActions.dataSuccess.type:
@@ -128,18 +128,18 @@ const updateUserReducer = (state = initialState, actions) => {
     } 
     console.log(data);
 
-    let newState = Object.assign({}, state, {
+    let dataSuccessState = Object.assign({}, state, {
       ...state, apiData: [...data], loading: false
     });
-    localStorage.setItem('usersDB', JSON.stringify(newState));
+    localStorage.setItem('usersDB', JSON.stringify(dataSuccessState));
     console.log('API response', JSON.parse(localStorage.getItem('usersDB')).apiData);
-  return newState; 
+  return dataSuccessState; 
 
 
   case userActions.dataFailure.type:
     let { error } = actions;
     console.log('Error response from API', error);
-    let newState = Object.assign({}, state, {
+    let dataFailureState = Object.assign({}, state, {
       ...state, loading: false, apiData: [{
         firstname: 'Demi', 
         lastname: 'Ode', 
@@ -147,8 +147,8 @@ const updateUserReducer = (state = initialState, actions) => {
         age: 4, 
         hobby: 'reading'}]
     });
-    localStorage.setItem('usersDB', JSON.stringify(newState));
-  return newState;
+    localStorage.setItem('usersDB', JSON.stringify(dataFailureState));
+  return dataFailureState;
 
 
   default:
